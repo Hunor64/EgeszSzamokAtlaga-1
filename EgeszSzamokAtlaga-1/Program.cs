@@ -1,28 +1,43 @@
 ﻿List<int> szamok = new();
-while (true)
-{
-	string szoveg = Console.ReadLine();
-	if (szoveg != "")
-	{
-		try
-		{
-			szamok.Add(Convert.ToInt32(szoveg));
-		}
-		catch (Exception)
-		{
+int szama = int.Parse(Console.ReadLine());
 
-		}
-	}
-	else
-	{
-		break;
-	}
+for (int i = 0; i < szama; i++)
+{
+    string szoveg = Console.ReadLine();
+    if (szoveg != "")
+    {
+        try
+        {
+            szamok.Add(Convert.ToInt32(szoveg));
+        }
+        catch (Exception)
+        {
+
+        }
+    }
+    else
+    {
+        break;
+    }
 }
 int osszes = 0;
 foreach (var item in szamok)
 {
-	osszes = osszes + item;
+    osszes = osszes + item;
 }
-Console.WriteLine(osszes);
-Console.WriteLine(szamok.Count());
-Console.WriteLine(Math.Round(osszes*1.0/szamok.Count(),2));
+string eredmeny = Math.Round(osszes * 1.0 / szamok.Count(), 2).ToString();
+try
+{
+    if (eredmeny.Split('.')[1].Length == 1)
+    {
+        eredmeny = eredmeny + "0";
+    }
+
+}
+catch (Exception)
+{
+    eredmeny = eredmeny + ".00";
+    throw;
+}
+
+Console.WriteLine(eredmeny);
